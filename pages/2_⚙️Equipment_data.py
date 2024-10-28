@@ -86,7 +86,9 @@ if st.session_state.addphaseStarted == True:
     st.dataframe(df, hide_index= True)
     df.to_csv("files/DatiEqp.csv")   # salva dati su DatiPiping
 
-
+if st.session_state.newFlag == 'stored':
+    df = pd.read_csv('files/DatiEqp.csv', index_col=False)   # lettura file e creazione
+    st.dataframe(df, hide_index= True)
 
 
 
