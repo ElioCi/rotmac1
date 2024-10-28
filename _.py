@@ -1,5 +1,44 @@
 import streamlit as st
 
+from urllib.parse import urlparse, parse_qs
+import requests
+import jwt
+from jwt import PyJWTError
+import time
+
+# Chiave segreta utilizzata per firmare il token
+SECRET_KEY = 'EC1'
+
+# Funzione per verificare il token
+def verify_token(token):
+    try:
+        # Decodifica e verifica il token
+        decoded_token = jwt.decode(token, SECRET_KEY, algorithms=["HS256"])
+        return decoded_token
+    except PyJWTError as e:
+        # Token non valido o scaduto
+        st.error("Token non valido o scaduto: " + str(e))
+        return None
+
+# Acquisisci il token dai parametri dell'URL
+query_params = st.experimental_get_query_params()
+token = query_params.get("token", [None])[0]
+
+if token:
+    # Verifica il token
+    decoded_token = verify_token(token)
+    if decoded_token:
+        st.success("Accesso autorizzato!")
+        st.write("Token decodificato:", decoded_token)
+        # Inserisci qui il codice dell'applicazione Streamlit
+    else:
+        st.error("Accesso negato: token non valido o scaduto.")
+        st.stop()
+else:
+    st.error("Nessun token fornito, accesso negato.")
+    st.stop()
+#  ***********************************************************
+
 st.set_page_config(
     page_title= "Vibratin Machines rel.1",
     page_icon= "⚙️"
