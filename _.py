@@ -39,10 +39,10 @@ else:
     st.stop()
 #  ***********************************************************
 
-st.set_page_config(
-    page_title= "Vibratin Machines rel.1",
-    page_icon= "⚙️"
-    )
+#st.set_page_config(
+#    page_title= "Vibratin Machines rel.1",
+#    page_icon= "⚙️"
+#    )
 
 #st.info(
 #        ":train:  --- Footing design for vibrating --- This Application allows you to analyse shallow footings for rotating machines with weight < 3000 kg."
