@@ -143,7 +143,7 @@ if sceltaNew == 'Stored Project':
     if st.session_state.DatiCaricati == True:
         st.session_state.statoPulsante2 = 'noclick'
         if st.button('🎬 Start !'):  
-            pagina = 'pages/1_📝General_Data.py'
+            pagina = 'pages/1_📝General_data.py'
             st.switch_page(pagina)
                         
 #flag_ns = col2.radio("Select one option", ["New Calculation", "Saved Calculation"])
