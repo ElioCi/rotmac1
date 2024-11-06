@@ -1,0 +1,2 @@
+,name,type,power,weight,rot_mass,velocity,CoG_X,CoG_Y,CoG_Z
+0,Pump,Dynamic,25.0,400.0,160.0,1450.0,900.0,650.0,560.0
