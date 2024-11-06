@@ -7,6 +7,9 @@ import jwt
 from jwt import PyJWTError
 import time
 
+if 'prot' not in st.session_state or not st.session_state.prot:
+    st.session_state.prot = False
+    
 # Chiave segreta utilizzata per firmare il token
 SECRET_KEY = 'EC1'
 
@@ -31,12 +34,21 @@ if token:
     if decoded_token:
         st.success("Authorized access!")
         st.write("Token decoded:", decoded_token)
+        st.session_state.prot = True
+        with open("prot_status.json", "w") as file:
+            json.dump({"prot": st.session_state.prot}, file)
+            
         # Inserisci qui il codice dell'applicazione Streamlit
     else:
         st.error("Access denied: token invalid or expired.")
+        st.session_state.prot = False
+        with open("prot_status.json", "w") as file:
+            json.dump({"prot": st.session_state.prot}, file)
         st.stop()
 else:
     st.error("No token provided, access denied.")
+    with open("prot_status.json", "w") as file:
+            json.dump({"prot": st.session_state.prot}, file)
     st.stop()
 
 
@@ -44,8 +56,7 @@ else:
 #        ":train:  --- Footing design for vibrating --- This Application allows you to analyse shallow footings for rotating machines with weight < 3000 kg."
 #        )
     
-if 'prot' not in st.session_state or not st.session_state.prot:
-    st.session_state.prot = False
+
     
 
 st.markdown("---")
@@ -57,9 +68,9 @@ col1.page_link("https://enginapps.it", label="www.enginapps.it", icon="🏠")
 #st.write("Application Start")
 
 # Salva in un file temporaneo
-st.session_state.prot = True
-with open("prot_status.json", "w") as file:
-    json.dump({"prot": st.session_state.prot}, file)
+#st.session_state.prot = True
+#with open("prot_status.json", "w") as file:
+#    json.dump({"prot": st.session_state.prot}, file)
 
 # Utilizza un link HTML per fare il redirect a "pages/main.py"
 # Codice HTML e CSS per il pulsante con hover
