@@ -10,7 +10,7 @@ if 'addphaseStarted' not in st.session_state:
 if 'dataEqp' not in st.session_state:
     st.session_state['dataEqp'] = []
 
-st.title('⚙️Vibating machine data')
+st.title('⚙️Vibrating machine data')
 
 power = st.number_input('Motor Power [kW]')
 st.subheader('Machine elements')
